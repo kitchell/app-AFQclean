@@ -1,0 +1,24 @@
+{
+  "name": "app-AFQclean",
+  "version": "1.0.0",
+  "description": "cleans AFQ output",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start.sh",
+    "stop": "stop.sh",
+    "status": "status.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kitchell/app-AFQclean"
+  },
+  "author": "Lindsey Kitchell <kitchell@indiana.edu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kitchell/app-AFQclean/issues"
+  },
+  "homepage": "https://github.com/kitchell/app-AFQclean#readme"
+}
