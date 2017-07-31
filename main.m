@@ -25,7 +25,7 @@ fg_classified = AFQ_clean(fg_classified);
 
 
 save('output.mat', 'fg_classified', 'classification', '-v7.3');
-
+tracts = fg2Array(fg_classified);
 
 mkdir('tracts');
 
