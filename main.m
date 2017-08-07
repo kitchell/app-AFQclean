@@ -21,7 +21,7 @@ disp(config)
 
 load(config.afq_fg);
 
-fg_classified = AFQ_clean(fg_classified);
+fg_classified = AFQ_clean(fg_classified, config);
 
 
 save('output.mat', 'fg_classified', 'classification', '-v7.3');
