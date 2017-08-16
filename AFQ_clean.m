@@ -2,19 +2,19 @@ function fg_clean = AFQ_clean(fg_classified, config)
 
 % cleans the fiber tracts with AFQ_removeFiberOutliers
 
-#maxDist = 4;
+%maxDist = 4;
 maxDist = config.maxdist;
 
-#maxLen = 4;
+%maxLen = 4;
 maxLen = config.maxlen;
 
-#numNodes = 30;
+%numNodes = 30;
 numNodes = config.numnodes;
 
-#M = 'mean';
+%M = 'mean';
 M = config.M;
 
-#maxIter = 5;
+%maxIter = 5;
 maxIter = config.maxiter;
 
 count = true;
