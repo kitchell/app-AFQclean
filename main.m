@@ -4,12 +4,12 @@ switch getenv('ENV')
 case 'IUHPC'
 	disp('loading paths (HPC)')
 	addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
-	addpath(genpath('/N/u/hayashis/BigRed2/git/afq'))
+	addpath(genpath('/N/u/hayashis/BigRed2/git/afq-master'))
 	addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
 case 'VM'
 	disp('loading paths (VM)')
 	addpath(genpath('/usr/local/jsonlab'))
-	addpath(genpath('/usr/local/afq'))
+	addpath(genpath('/usr/local/afq-master'))
 	addpath(genpath('/usr/local/vistasoft'))
 end
 
