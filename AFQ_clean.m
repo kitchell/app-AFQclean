@@ -8,7 +8,7 @@ maxDist = config.maxdist;
 %maxLen = 4;
 maxLen = config.maxlen;
 
-%numNodes = 30;
+%numNodes = 100;
 numNodes = config.numnodes;
 
 %M = 'mean';
