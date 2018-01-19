@@ -43,7 +43,10 @@ fg_classified = fg_classified_clean;
 
 save('output.mat', 'fg_classified', 'classification', '-v7.3');
 
-% Prepare additional parameters for visualization of the results on BL:tract-view
+%%% 
+%% Plotting and visualization code below.
+%%
+%% Prepare additional parameters for visualization of the results on BL:tract-view
 tracts = fg2Array(fg_classified);
 mkdir('tracts');
 
