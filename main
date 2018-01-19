@@ -1,0 +1,18 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=16,walltime=0:50:00
+#PBS -N app-AFQclean
+#PBS -V
+
+module load matlab
+matlab -nodisplay -nosplash -r afqcleantracts
+
+
+
+if [ -s output.mat ]; 
+then 
+  echo 0 > finished
+else
+  echo "file missing"
+  echo 1 > finished
+  exit 1
+fi

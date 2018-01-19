@@ -1,4 +1,14 @@
-function main()
+function afqcleantracts()
+% function afqcleantracts()
+% 
+% cleans the fiber tracts with AFQ_removeFiberOutliers
+%
+% DEFAULT maxDist = 4;
+% DEFAULT maxLen = 4;
+% DEFAULT 100
+% DEFAULT maxIter = 5;
+%
+% Brain Life Team
 
 switch getenv('ENV')
 case 'IUHPC'
@@ -13,20 +23,28 @@ case 'VM'
 	addpath(genpath('/usr/local/vistasoft'))
 end
 
-% load config.json
-config = loadjson('config.json');
 
+config = loadjson('config.json');
 disp('config dump')
 disp(config)
-
 load(config.afq_fg);
 
-fg_classified = AFQ_clean(fg_classified, config);
+count    = true;
+maxLen   = config.maxlen;
+numNodes = config.numnodes;
+M        = config.M;
+maxDist  = config.maxdist;
+maxIter  = config.maxiter;
 
+for ii = 1:length(fg_classified)
+    fg_classified_clean(ii) = AFQ_removeFiberOutliers(fg_classified(ii), maxDist, maxLen, numNodes, M, count, maxIter);
+end
+fg_classified = fg_classified_clean;
 
 save('output.mat', 'fg_classified', 'classification', '-v7.3');
-tracts = fg2Array(fg_classified);
 
+% Prepare additional parameters for visualization of the results on BL:tract-view
+tracts = fg2Array(fg_classified);
 mkdir('tracts');
 
 cm = parula(length(tracts));
@@ -56,4 +74,5 @@ T.Properties.VariableNames = {'Tracts', 'FiberCount'};
 writetable(T,'output_fibercounts.txt')
 
 end
+
 
