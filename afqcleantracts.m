@@ -41,7 +41,7 @@ for ii = 1:length(fg_classified)
 end
 fg_classified = fg_classified_clean;
 
-save('output.mat', 'fg_classified', 'classification', '-v7.3');
+save('output.mat', 'fg_classified', 'classification');
 
 %%% 
 %% Plotting and visualization code below.
