@@ -48,91 +48,49 @@ save('output.mat', 'fg_classified_clean', 'classification');
 %% product.json generation
 %%
 
-tract_info = cell(num_tracts, 2);
-fibercounts = zeros(1, num_tracts);
-num_left_tracts = 0;
-num_right_tracts = 0;
-
-for i = 1 : num_tracts
-    name = fg_classified(i).name;
-    
-    if startsWith(name, 'Right ') || endsWith(name, ' R')
-        num_right_tracts = num_right_tracts + 1;
-    else
-        num_left_tracts = num_left_tracts + 1;
-    end
-end
-
-left_labels = cell(1, num_left_tracts);
-right_labels = cell(1, num_right_tracts);
-
-left_cleaned = zeros([1, num_left_tracts]);
-right_cleaned = zeros([1, num_right_tracts]);
-
-left_tract_idx = 1;
-right_tract_idx = 1;
+xs = cell(1, num_tracts);
+ys_cleaned = zeros([1, num_tracts]);
+ys_resulting = zeros([1, num_tracts]);
 
 % sort cleaned tracts by left/right,
 % and count how many within each
 % tract were cleaned
 for i = 1 : num_tracts
-    name = fg_classified(i).name;
     num_fibers = length(fg_classified(i).fibers);
     num_fibers_cleaned = length(fg_classified_clean(i).fibers);
     amount_cleaned = num_fibers - num_fibers_cleaned;
     
-    basename = name;
-    
-    if startsWith(basename, 'Right ')
-        basename = extractAfter(basename, 6);
-    end
-    if endsWith(basename, ' R')
-        basename = extractBefore(basename, length(basename) - 1);
-    end
-    
-    if startsWith(basename, 'Left ')
-        basename = extractAfter(basename, 5);
-    end
-    if endsWith(basename, ' L')
-        basename = extractBefore(basename, length(basename) - 1);
-    end
-    
-    if startsWith(name, 'Right ') || endsWith(name, ' R')
-        right_labels{right_tract_idx} = basename;
-        right_cleaned(right_tract_idx) = amount_cleaned;
-        right_tract_idx = right_tract_idx + 1;
-    else
-        left_labels{left_tract_idx} = basename;
-        left_cleaned(left_tract_idx) = amount_cleaned;
-        left_tract_idx = left_tract_idx + 1;
-    end
+    xs{i} = fg_classified(i).name;
+    ys_cleaned(i) = amount_cleaned;
+    ys_resulting(i) = num_fibers;
 end
 
 bar1 = struct;
 bar2 = struct;
 
-bar1.x = left_labels;
-bar1.y = left_cleaned;
+bar1.x = xs;
+bar1.y = ys_resulting;
 bar1.type = 'bar';
-bar1.name = 'Left';
+bar1.name = 'Resulting Fibers';
 bar1.marker = struct;
-bar1.marker.color = 'rgb(49,130,189)';
+bar1.marker.color = 'rgb(29,110,169)';
 
-bar2.x = right_labels;
-bar2.y = right_cleaned;
+bar2.x = xs;
+bar2.y = ys_cleaned;
 bar2.type = 'bar';
-bar2.name = 'Right';
+bar2.name = 'Fibers Cleaned';
 bar2.marker = struct;
-bar2.marker.color = 'rgb(204, 204, 204)';
+bar2.marker.color = "rgb(169,29,110)";
 
 bardata = {bar1, bar2};
 barlayout = struct;
-barlayout.title = 'Number of Fibers Cleaned';
+barlayout.title = 'Fiber Counts';
 barlayout.xaxis = struct;
+barlayout.xaxis.tickangle = 90;
 barlayout.xaxis.tickfont = struct;
 barlayout.xaxis.tickfont.size = 8;
 
-barlayout.barmode = 'group';
+barlayout.barmode = 'stack';
 barplot = struct;
 barplot.data = bardata;
 barplot.layout = barlayout;
