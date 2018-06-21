@@ -73,14 +73,14 @@ bar1.y = ys_resulting;
 bar1.type = 'bar';
 bar1.name = 'Resulting Fibers';
 bar1.marker = struct;
-bar1.marker.color = 'rgb(29,110,169)';
+bar1.marker.color = 'rgb(29,130,209)';
 
 bar2.x = xs;
 bar2.y = ys_cleaned;
 bar2.type = 'bar';
 bar2.name = 'Fibers Cleaned';
 bar2.marker = struct;
-bar2.marker.color = "rgb(169,29,110)";
+bar2.marker.color = 'rgb(109,190,249)';
 
 bardata = {bar1, bar2};
 barlayout = struct;
