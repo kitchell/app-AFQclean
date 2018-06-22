@@ -41,8 +41,8 @@ num_tracts = length(fg_classified);
 for ii = 1 : num_tracts
     fg_classified_clean(ii) = AFQ_removeFiberOutliers(fg_classified(ii), maxDist, maxLen, numNodes, M, count, maxIter);
 end
-
-save('output.mat', 'fg_classified_clean', 'classification');
+fg_classified = fg_classified_clean;
+save('output.mat', 'fg_classified', 'classification');
 
 %%%
 %% product.json generation
@@ -105,7 +105,7 @@ savejson('brainlife', product, 'product.json');
 %%
 %% Prepare additional parameters for visualization of the results on BL:tract-view
 
-fg_classified = fg_classified_clean;
+%fg_classified = fg_classified_clean;
 tracts = fg2Array(fg_classified);
 mkdir('tracts');
 
