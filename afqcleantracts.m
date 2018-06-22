@@ -37,17 +37,75 @@ M        = config.M;
 maxDist  = config.maxdist;
 maxIter  = config.maxiter;
 
-for ii = 1:length(fg_classified)
+num_tracts = length(fg_classified);
+for ii = 1 : num_tracts
     fg_classified_clean(ii) = AFQ_removeFiberOutliers(fg_classified(ii), maxDist, maxLen, numNodes, M, count, maxIter);
 end
 fg_classified = fg_classified_clean;
-
 save('output.mat', 'fg_classified', 'classification');
+
+%%%
+%% product.json generation
+%%
+
+xs = cell(1, num_tracts);
+ys_cleaned = zeros([1, num_tracts]);
+ys_resulting = zeros([1, num_tracts]);
+
+% sort cleaned tracts by left/right,
+% and count how many within each
+% tract were cleaned
+for i = 1 : num_tracts
+    num_fibers = length(fg_classified(i).fibers);
+    num_fibers_cleaned = length(fg_classified_clean(i).fibers);
+    amount_cleaned = num_fibers - num_fibers_cleaned;
+    
+    xs{i} = fg_classified(i).name;
+    ys_cleaned(i) = amount_cleaned;
+    ys_resulting(i) = num_fibers;
+end
+
+bar1 = struct;
+bar2 = struct;
+
+bar1.x = xs;
+bar1.y = ys_resulting;
+bar1.type = 'bar';
+bar1.name = 'Resulting Fibers';
+bar1.marker = struct;
+bar1.marker.color = 'rgb(29,130,209)';
+
+bar2.x = xs;
+bar2.y = ys_cleaned;
+bar2.type = 'bar';
+bar2.name = 'Fibers Cleaned';
+bar2.marker = struct;
+bar2.marker.color = 'rgb(109,190,249)';
+
+bardata = {bar1, bar2};
+barlayout = struct;
+barlayout.title = 'Fiber Counts';
+barlayout.xaxis = struct;
+barlayout.xaxis.tickangle = 90;
+barlayout.xaxis.tickfont = struct;
+barlayout.xaxis.tickfont.size = 8;
+
+barlayout.barmode = 'stack';
+barplot = struct;
+barplot.data = bardata;
+barplot.layout = barlayout;
+
+product = {barplot};
+savejson('brainlife', product, 'product.json');
+
+%% done generating
 
 %%% 
 %% Plotting and visualization code below.
 %%
 %% Prepare additional parameters for visualization of the results on BL:tract-view
+
+%fg_classified = fg_classified_clean;
 tracts = fg2Array(fg_classified);
 mkdir('tracts');
 
