@@ -82,7 +82,6 @@ bar2.marker.color = 'rgb(109,190,249)';
 
 bardata = {bar1, bar2};
 barlayout = struct;
-barlayout.title = 'Fiber Counts';
 barlayout.xaxis = struct;
 barlayout.xaxis.tickangle = 90;
 barlayout.xaxis.tickfont = struct;
@@ -90,6 +89,8 @@ barlayout.xaxis.tickfont.size = 8;
 
 barlayout.barmode = 'stack';
 barplot = struct;
+barplot.type = 'plotly';
+barplot.name = 'Fiber Counts';
 barplot.data = bardata;
 barplot.layout = barlayout;
 
