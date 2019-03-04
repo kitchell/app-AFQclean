@@ -3,12 +3,16 @@
 #PBS -N app-AFQclean
 #PBS -V
 
-singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/afqcleantracts
+set -e
+set -x
 
-if [ -s output.mat ]; 
-then 
-  exit 0
-else
-  echo "Cannot find file to run."
-  exit 1
+singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/afqcleantracts
+if [ ! -s output.mat ]; then 
+    exit 1
+fi
+
+echo "bypassing surfaces/"
+surfaces=$(dirname `jq -r .afq_fg config.json`)/surfaces
+if [ -d $surfaces ]; then
+    cp -r $surfaces ./surfaces
 fi
