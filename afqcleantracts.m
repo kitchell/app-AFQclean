@@ -107,9 +107,9 @@ savejson('brainlife', product, 'product.json');
 fg_classified = fg_classified_clean;
 
 if exist('classification','var')
-    save('output.mat', 'fg_classified');
-else
     save('output.mat', 'fg_classified', 'classification');
+else
+    save('output.mat', 'fg_classified');
 end
 
 tracts = fg2Array(fg_classified);
