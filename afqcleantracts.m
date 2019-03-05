@@ -105,10 +105,18 @@ savejson('brainlife', product, 'product.json');
 %% Prepare additional parameters for visualization of the results on BL:tract-view
 
 fg_classified = fg_classified_clean;
-save('output.mat', 'fg_classified', 'classification');
+
+if exist('classification','var')
+    save('output.mat', 'fg_classified');
+else
+    save('output.mat', 'fg_classified', 'classification');
+end
 
 tracts = fg2Array(fg_classified);
-mkdir('tracts');
+
+if ~exist('tracts', 'dir')
+    mkdir('tracts');
+end
 
 cm = parula(length(tracts));
 for it = 1:length(tracts)
