@@ -11,18 +11,10 @@ function afqcleantracts()
 % Brain Life Team
 
 if ~isdeployed
-    switch getenv('ENV')
-    case 'IUHPC'
-        disp('loading paths (HPC)')
-        addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
-        addpath(genpath('/N/u/hayashis/BigRed2/git/afq-master'))
-        addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
-    case 'VM'
-        disp('loading paths (VM)')
-        addpath(genpath('/usr/local/jsonlab'))
-        addpath(genpath('/usr/local/afq-master'))
-        addpath(genpath('/usr/local/vistasoft'))
-    end
+	disp('loading paths')
+	addpath(genpath('/N/u/brlife/git/vistasoft'))
+	addpath(genpath('/N/u/brlife/git/jsonlab'))
+	addpath(genpath('/N/u/brlife/git/afq'))
 end
 
 config = loadjson('config.json');
@@ -126,6 +118,7 @@ for it = 1:length(tracts)
    %pick randomly up to 1000 fibers (pick all if there are less than 1000)
    fiber_count = min(1000, numel(tracts(it).fibers));
    tract.coords = tracts(it).fibers(randperm(fiber_count));
+   tract.coords = cellfun(@(x) round(x,2), tract.coords, 'UniformOutput', false);
 
    all_tracts(it).name = tracts(it).name;
    all_tracts(it).color = cm(it,:);
