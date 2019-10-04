@@ -1,25 +1,18 @@
-/N/u/brlife/git/vistasoft
-commit cf75f1a8c037382d6a157f0a7b683a3fd424ee4c
-Merge: 8bea0b7 7e4a5c5
-Author: rokers <rokers@gmail.com>
-Date:   Fri Jul 13 17:13:01 2018 -0400
+/N/u/hayashis/git/vistasoft
+commit a517bdce344e25f08504ede1bf532d8d2626b0b8
+Author: Soichi Hayashi <hayashis@iu.edu>
+Date:   Fri Sep 6 16:23:49 2019 +0000
 
-    Merge branch 'master' of https://github.com/vistalab/vistasoft
+    cleaner handling in case of empty fg.fibers
 /N/u/brlife/git/jsonlab
-commit 474d8c824800b5f2109c08f989085cb961acdbe3
-Merge: ae7a5d9 38b24fb
+commit 31eabbaab227d500786aaa472b9f5bbd9f082c61
 Author: Qianqian Fang <fangqq@gmail.com>
-Date:   Wed Sep 6 13:01:57 2017 -0400
+Date:   Tue Aug 20 12:20:38 2019 -0400
 
-    Merge pull request #41 from dasantonym/master
-    
-    added package.json to be able to intall via npm package manager
+    fix table transpose issue for uniform type tables
 /N/u/brlife/git/afq
-commit 50bdc81e060670a83789a4168f9b5e88cea39c2a
-Merge: 0f5022e ff02c94
-Author: Jason D. Yeatman <jyeatman@uw.edu>
-Date:   Sun May 27 18:07:17 2018 -0700
+commit a22bbab141b0eff734821bc4542fc81a0f109d62
+Author: jyeatman <jyeatman@.uw.edu>
+Date:   Thu Jul 25 11:24:35 2019 -0700
 
-    Merge pull request #17 from htakemur/sips
-    
-    The code to identify human SIPS
+    now roi defining code will look along the surface normal

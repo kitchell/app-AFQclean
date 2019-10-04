@@ -1,7 +1,7 @@
 {
-    "afq_fg": "testdata/wmc/output.mat",
-    "maxiter": 5,
-    "numnodes": 100,
+    "afq_fg": "testdata/205826/output.mat",
+    "maxiter": 3,
+    "numnodes": 30,
     "maxlen": 4,
     "maxdist": 4,
     "M": "mean"

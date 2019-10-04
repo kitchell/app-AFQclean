@@ -12,7 +12,7 @@ function afqcleantracts()
 
 if ~isdeployed
 	disp('loading paths')
-	addpath(genpath('/N/u/brlife/git/vistasoft'))
+	addpath(genpath('/N/u/hayashis/git/vistasoft'))
 	addpath(genpath('/N/u/brlife/git/jsonlab'))
 	addpath(genpath('/N/u/brlife/git/afq'))
 end
@@ -98,11 +98,9 @@ savejson('brainlife', product, 'product.json');
 
 fg_classified = fg_classified_clean;
 
-if exist('classification','var')
-    save('output.mat', 'fg_classified', 'classification');
-else
-    save('output.mat', 'fg_classified');
-end
+%I need to set -7.3 on r2017a and r2019a..
+%Warning: Variable 'fg_classified' was not saved. For variables larger than 2GB use MAT-file version 7.3 or later. 
+save('output.mat', 'fg_classified', 'classification', '-v7.3');
 
 tracts = fg2Array(fg_classified);
 
